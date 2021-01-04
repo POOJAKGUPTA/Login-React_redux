@@ -7,7 +7,7 @@ import {
     loading : false,
   };
 
-  export default (state = INITIAL_STATE, action) => {  
+  const signInReducer =  (state = INITIAL_STATE, action) => {  
     switch (action.type) {
       case SIGN_IN_USER: {
         return {
@@ -20,3 +20,4 @@ import {
         return state;
     }
   };
+export default signInReducer;

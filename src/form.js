@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+
 import { connect } from 'react-redux';
+
 import './form.css'
 import {
     GetUsers
@@ -7,6 +9,9 @@ import {
   import {
     AddUser
   } from "./action/signUp";
+
+import { Redirect } from "react-router";
+
 
 function Form(props) {
     const location = window.location.pathname
@@ -19,13 +24,14 @@ function Form(props) {
     }
     const GetUsers =  props.GetUsers
     const AddUser =  props.AddUser
+
     const handleSignin = () => {
         let sendData = {}
-        if (data.password == data.password_confimation)
+        if (data.password === data.password_confimation)
         {
             let user = {}
             user['email'] =  data.email
-            user ['password'] =  data.password
+            user['password'] =  data.password
             sendData = {user: user}
             GetUsers(sendData)
         }
@@ -35,9 +41,13 @@ function Form(props) {
         }
     }
 
+    if (props.redirectTo) {
+        return <Redirect to={props.redirectTo} />;
+    }  
+
     const handleSignup = () => {
         let sendData = {}
-        if (data.password == data.password_confimation)
+        if (data.password === data.password_confimation)
         {
             sendData = {user: data}
             AddUser(sendData)
@@ -89,6 +99,13 @@ const mapDispacthToProps = dispatch => {
       }    
     };
 }
-export default connect(null,
+
+const mapStateToProps = (state) => {
+    return {
+        redirectTo: state.redirectReducer.redirectTo
+    }
+}
+
+export default connect(mapStateToProps,
     mapDispacthToProps
   )(Form);

@@ -13,7 +13,6 @@ export const AddUser = (data) => {
             data
           })
         .then(res => {
-            const persons = res.data;
             dispatch({
                 type: SIGN_UP_USER,
                 signup_users: res

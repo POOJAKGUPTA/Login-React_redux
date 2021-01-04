@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 
-import './form.css'
+import '../form.css'
 class PostForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
